@@ -35,14 +35,13 @@ let recurse = (order, wh, index, shipments) => {
     // iterate through order and determine the amount remaining after visiting current warehouse
     for (let key in cont) {
         let count = cont[key];
-        if (count === 0) continue; // no order left, skip
+        if (count === 0) continue; // no items left, skip
         if (count < 0) {
             contCurrShipment = {};
             break;
         } // if negative count no possible way to fulfill order
 
         if (inventory[key] && inventory[key] > 0) {
-            shipWithWh = true;
             let use = inventory[key] > count ? count : inventory[key]; // determine how much we are going to use from the warehouse
             cont[key] -= use; // update remaining order that needs to be fulfilled
             contCurrShipment[key] = use; // update shipment
