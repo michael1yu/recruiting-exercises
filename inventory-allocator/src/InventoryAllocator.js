@@ -15,6 +15,7 @@ let allocate = (order, wh) => {
         for (let key in order) {
             let count = order[key];
             if (count === 0) continue;
+            if(count < 0) return []; // if negative count no possible way to fulfill order
             if (inventory[key] && inventory[key] > 0) {
                 shipWithWh = true;
                 let use = inventory[key] > count ? count : inventory[key]; // determine how much we are going to use from the warehouse

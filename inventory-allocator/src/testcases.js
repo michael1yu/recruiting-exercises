@@ -18,8 +18,26 @@ let cases = [
         desc: 'not enough inventory, order should not be fulfilled',
         order: { apple: 1 },
         wh: [{ name: 'owd', inventory: { apple: 0 } }],
-        expected: []
-    }
+        expected: [],
+    },
+    {
+        desc: 'no order, order is fulfilled with empty array',
+        order: {},
+        wh: [
+            { name: 'owd', inventory: { apple: 5 } },
+            { name: 'dm', inventory: { apple: 5 } },
+        ],
+        expected: [],
+    },
+    {
+        desc: 'negative order, order should not be fulfilled',
+        order: {apple: 2, banana: -1},
+        wh: [
+            { name: 'owd', inventory: { apple: 5, banana: 5 } },
+            { name: 'dm', inventory: { apple: 5 } },
+        ],
+        expected: [],
+    },
 ];
 
 module.exports = cases;
